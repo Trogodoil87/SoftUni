@@ -1,4 +1,4 @@
-function solve(arrs) {
+function carCrate(arrs) {
     let horizontalSums = [];
     let isMagic = true;
     for (const arr of arrs) {
@@ -25,7 +25,7 @@ function solve(arrs) {
     console.log(isMagic);
 }
 
-solve([[4, 5, 6],
+carCrate([[4, 5, 6],
 
 [6, 5, 4],
 

@@ -1,4 +1,4 @@
-function solve(numbers) {
+function carCrate(numbers) {
     let sorted = numbers.sort((a, b) => a - b);
     let length = sorted.length / 2;
     let outputArr = [];
@@ -11,4 +11,4 @@ function solve(numbers) {
     return outputArr;
 }
 
-solve([1, 65, 3, 52, 48, 63, 31, -3, 18, 56]);
+carCrate([1, 65, 3, 52, 48, 63, 31, -3, 18, 56]);

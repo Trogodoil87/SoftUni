@@ -1,6 +1,6 @@
-function solve(text) {
+function carCrate(text) {
     console.log(text.length);
     console.log(text);
 }
 
-solve('Hello, JavaScript!');
+carCrate('Hello, JavaScript!');

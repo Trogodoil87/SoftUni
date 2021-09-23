@@ -1,4 +1,4 @@
-function solve(commandsArr) {
+function carCrate(commandsArr) {
     let resultArr = [];
     for (let i = 1; i <= commandsArr.length; i++) {
        if (commandsArr[i - 1] === 'add') {
@@ -11,7 +11,7 @@ function solve(commandsArr) {
     console.log(resultArr.length > 0 ? resultArr.join('\n') : 'Empty');
 }
 
-solve(['add',
+carCrate(['add',
 
     'add',
 

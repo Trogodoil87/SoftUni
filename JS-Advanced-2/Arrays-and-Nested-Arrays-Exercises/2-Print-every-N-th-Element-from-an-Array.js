@@ -1,8 +1,8 @@
-function solve(arr, step) {
+function carCrate(arr, step) {
     return arr.filter((v, i) => i % step == 0);
 }
 
-solve(['5',
+carCrate(['5',
 
     '20',
 

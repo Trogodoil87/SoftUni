@@ -1,4 +1,4 @@
-function solve(moves) {
+function carCrate(moves) {
     function printBoard(board) {
         for (const line of board) {
             console.log(line.join('\t'));
@@ -102,7 +102,7 @@ function solve(moves) {
 }
 
 
-solve(["0 0",
+carCrate(["0 0",
 
     "0 0",
 

@@ -1,4 +1,4 @@
-function solve(numbers) {
+function carCrate(numbers) {
     let currentMax = Number.MIN_SAFE_INTEGER;
     let output = [];
 
@@ -12,7 +12,7 @@ function solve(numbers) {
     return output;
 }
 
-solve([1,
+carCrate([1,
 
     3,
 

@@ -1,4 +1,4 @@
-function solve(strArr, rotations) {
+function carCrate(strArr, rotations) {
     for (let i = 0; i < rotations; i++) {
         let currentLast = strArr.pop();
         strArr.unshift(currentLast);
@@ -7,7 +7,7 @@ function solve(strArr, rotations) {
     console.log(strArr.join(' '));
 }
 
-solve(['1',
+carCrate(['1',
 
     '2',
 
