@@ -42,7 +42,7 @@ button{
 table{
     margin: 0 auto;
     text-align: center;
-    border:none;
+    border: 0;
 }
 
 td{
