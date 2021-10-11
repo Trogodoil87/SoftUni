@@ -1,4 +1,4 @@
-function solve(props) {
+function result(props) {
     let result = [];
 
     let commands = {
@@ -20,4 +20,4 @@ function solve(props) {
     }
 }
 
-solve(['add hello', 'add again', 'remove hello', 'add again', 'print']);
+result(['add hello', 'add again', 'remove hello', 'add again', 'print']);

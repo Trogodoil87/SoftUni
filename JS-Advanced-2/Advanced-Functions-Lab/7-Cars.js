@@ -1,4 +1,4 @@
-function solve(params) {
+function result(params) {
     let obj = {};
 
     for (const param of params) {
@@ -10,9 +10,7 @@ function solve(params) {
                 obj[objName] = {};
             },
             inherit: (target, source) => {
-                // obj[target] = obj[target] = Object.assign(obj[target], obj[source]);
-                obj[target] = obj[source];
-
+                obj[target] = obj[target] = Object.assign(obj[target], obj[source]);
             },
             set: (source, propName, propValue) => {
                 obj[source][propName] = propValue;
@@ -49,7 +47,7 @@ function solve(params) {
     }
 }
 
-solve(['create c1', 
+result(['create c1', 
 
 'create c2 inherit c1', 
 

@@ -1,4 +1,4 @@
-function solve(employeesJSON, prop) {
+function result(employeesJSON, prop) {
     let [criteria, value] = prop.split('-');
     let employees = JSON.parse(employeesJSON);
     let counter = 0;
@@ -10,7 +10,7 @@ function solve(employeesJSON, prop) {
     }
 }
 
-solve(`[{ 
+result(`[{ 
 
     "id": "1", 
 
