@@ -9,10 +9,12 @@ function create(words) {
       currentPElement.style.display = 'none'
 
       currentDivElement.appendChild(currentPElement);
-      currentDivElement.addEventListener('click', (e) => {
-         e.currentTarget.children[0].style.display = 'block';
-      })
+      currentDivElement.addEventListener('click', reveal.bind(currentPElement))
 
       contentElement.appendChild(currentDivElement);
+   }
+
+   function reveal() {
+      this.style.display = '';
    }
 }

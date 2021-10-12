@@ -1,10 +1,11 @@
-// let add = (function () {
-//     let total = 0;
-//     return function sum(a) {
-//         total += a;
-//         sum.toString = () => total;
-//         return sum;
-//     }
-// })();
+function add(a) {
+    function b(b) {
+        function c(c) {
+            return a + b + c;
+        }
+        return c();
 
-// console.log(add(6)(7));
+    }
+  return  b();
+}
+console.log(add(1));
