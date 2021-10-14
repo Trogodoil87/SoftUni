@@ -20,6 +20,7 @@ describe('Retrive char at given index', () => {
 
     it('Correct Index', () => {
         expect(lookupChar('abc', 0)).to.equal('a');
+        expect(lookupChar('abcd', 3)).to.equal('d');
     });
 
     it('Incorrect Index', () => {
@@ -33,4 +34,8 @@ describe('Retrive char at given index', () => {
     it('returns undefined for empty first and second parameter str', () => {
         expect(lookupChar('','')).to.be.undefined;
     }) 
+
+    it('Incorrect Index',() => {
+        expect(lookupChar('abv', 2.2)).to.be.undefined;
+    });
 });
