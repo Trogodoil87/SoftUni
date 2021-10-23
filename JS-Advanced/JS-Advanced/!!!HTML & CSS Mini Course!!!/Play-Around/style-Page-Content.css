@@ -1,0 +1,47 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #ccc;
+}
+section {
+    margin-left: 20px;
+}
+h1 {
+    font-size: 28px;
+}
+p {
+    font-style: italic;
+}
+article > p {
+    font-size: 24px;
+}
+nav {
+    background: #424242;
+}
+nav ul {
+    text-align: center;
+    padding: 10px;
+    margin: 0;
+}
+nav ul li {
+    display: inline-block;
+}
+nav ul li a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    color: white;
+}
+footer p {
+    display: auto;
+    background: #424242;
+    text-align: center;
+    margin: 0;
+}
+details p {
+    background-color: blue;
+}
+table, td {
+    border: 1px solid black;
+}
