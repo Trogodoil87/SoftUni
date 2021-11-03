@@ -73,7 +73,7 @@ function solve() {
         let mainDiv2 = divCreator('description');
         let h3Ele = document.createElement('h3');
         h3Ele.textContent = 'Preparation:'
-        mainDiv2.appendChild(h3Ele)
+        mainDiv2.appendChild(h3Ele);
 
         for (const step of data.steps) {
             let p = document.createElement('p');

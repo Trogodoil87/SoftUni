@@ -8,6 +8,7 @@ function lockedProfile() {
             let unlockElement = e.currentTarget.parentNode.children[4];
             let userHiddenInfoElement = e.currentTarget.parentNode.children[9]
 
+            console.log(userHiddenInfoElement);
             if (e.currentTarget.textContent === 'Show more') {
                 if (unlockElement.checked === true) {
                     userHiddenInfoElement.style.display = 'initial';
