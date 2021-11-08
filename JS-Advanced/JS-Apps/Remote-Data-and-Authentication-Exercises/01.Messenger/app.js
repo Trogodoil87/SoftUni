@@ -6,7 +6,9 @@ function attachEvents() {
     let msgTextElement = document.querySelector('input[name="content"]');
 
     document.querySelector('#submit').addEventListener('click', (e) => {
-        onSend(authorNameElement.value.trim(), msgTextElement.value.trim());
+        if (authorNameElement.value !== '' && msgTextElement.value !== '') {
+            onSend(authorNameElement.value.trim(), msgTextElement.value.trim());
+        }
 
         authorNameElement.value = '';
         msgTextElement.value = '';

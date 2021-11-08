@@ -1,6 +1,7 @@
 function attachEvents() {
     let url = `http://localhost:3030/jsonstore/phonebook/`;
     let liElements = [];
+    let pattern = /^\+[0-9]*\s[0-9]{9}$/gm;
 
     let personElement = document.querySelector('#person');
     let phoneElement = document.querySelector('#phone');
@@ -10,13 +11,17 @@ function attachEvents() {
     document.querySelector('#btnLoad').addEventListener('click', (e) => {
         liElements = [];
         removeAllChildNodes(phoneBookUlElement);
-        
+
         onLoad();
 
     })
 
     document.querySelector('#btnCreate').addEventListener('click', (e) => {
-        onCreate(personElement.value, phoneElement.value);
+
+        if (personElement.value !== '' && phoneElement.value !== '' && pattern.test(phoneElement.value) === true) {
+            onCreate(personElement.value, phoneElement.value);
+        }
+
         personElement.value = '';
         phoneElement.value = '';
     });
@@ -53,7 +58,6 @@ function attachEvents() {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
             })
             .catch(err => {
                 console.error(err);
