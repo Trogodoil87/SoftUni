@@ -34,7 +34,9 @@ function attachEvents() {
                     .then((data) => {
                         let forecasts = createForecasts(data, symbols);
 
-                        document.querySelector('#current').appendChild(forecasts);
+                        let currentConditionElement = document.querySelector('#current');
+                        removeAllChildNodes(currentConditionElement);
+                        currentConditionElement.appendChild(forecasts);
                     })
                     .catch((error) => {
                         throw 'Invalid input';
@@ -48,7 +50,9 @@ function attachEvents() {
                         console.log(data);
                         let forecastsInfo = createThreeDayForecasts(data, symbols);
 
-                        document.querySelector('#upcoming').appendChild(forecastsInfo);
+                        let upcomingWeatherElement = document.querySelector('#upcoming');
+                        removeAllChildNodes(upcomingWeatherElement);
+                        upcomingWeatherElement.appendChild(forecastsInfo);
                     })
                     .catch(() => {
                         throw `Error`;
@@ -102,6 +106,12 @@ function attachEvents() {
 
         div.appendChild(spanCondtionElement);
         return div;
+    }
+
+    function removeAllChildNodes(parent) {
+        while (parent.firstChild) {
+            parent.removeChild(parent.firstChild);
+        }
     }
 }
 

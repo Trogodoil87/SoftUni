@@ -1,15 +1,16 @@
 function getInfo() {
     let busIdField = document.querySelector('#stopId');
     let stopNameElement = document.querySelector('#stopName');
+    let busesUlElement = document.querySelector('#buses');
 
-    fetch(`http://localhost:3030/jsonstore/bus/businfo/${busIdField.value}`)
+    removeAllChildNodes(busesUlElement);
+
+    fetch(`http://localhost:3030/jsonstore/bus/businfo/${busIdField.value.trim()}`)
         .then(res => res.json())
         .then((data) => {
             busIdField.value = '';
-
             stopNameElement.textContent = data.name;
 
-            let busesUlElement = document.querySelector('#buses');
 
             for (const key in data.buses) {
                 if (Object.hasOwnProperty.call(data.buses, key)) {
@@ -23,4 +24,10 @@ function getInfo() {
             busIdField.value = '';
             stopNameElement.textContent = 'Error';
         });
+
+    function removeAllChildNodes(parent) {
+        while (parent.firstChild) {
+            parent.removeChild(parent.firstChild);
+        }
+    }
 }

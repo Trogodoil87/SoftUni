@@ -1,7 +1,9 @@
 function attachEvents() {
     let posts = document.querySelector('#posts');
     let _postsArr = [];
-    document.querySelector('#btnLoadPosts').addEventListener('click', () => {
+    let loadPostsBtn = document.querySelector('#btnLoadPosts');
+    loadPostsBtn.addEventListener('click', () => {
+        loadPostsBtn.disabled = true;
         getPosts();
     });
 
