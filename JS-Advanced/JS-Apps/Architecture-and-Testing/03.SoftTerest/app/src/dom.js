@@ -28,18 +28,3 @@ export function e(type, attributes, ...content) {
 
     return result;
 }
-
-// function appendViews(section) {
-//     let element = document.createElement('div');
-//     element.appendChild(document.querySelector('#nav-bar'));
-//     if (section.length > 1) {
-//         for (const item of section) {
-//             element.appendChild(item);
-//             console.log(element)
-//         }
-//     } else {
-//         element.appendChild(section);
-//     }
-//     element.appendChild(document.querySelector('#footer'));
-//     return element;
-// }

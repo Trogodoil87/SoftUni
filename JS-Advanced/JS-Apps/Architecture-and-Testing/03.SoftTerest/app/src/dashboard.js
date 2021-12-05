@@ -31,7 +31,7 @@ async function loadIdeas() {
 
 export function createIdea(idea) {
     let element =
-        e('div', { className: 'card overflow-hidden current-card details', style: 'width: 20rem; height: 18rem;' },
+        e('div', { className: 'card overflow-hidden current-card details', style: 'width: 20rem; height: 15rem;' },
             e('div', { className: 'card-body' },
                 e('p', { className: 'card-text' }, idea.title)),
             e('img', { className: 'card-image', src: idea.img, alt: 'Card image cap' }),
