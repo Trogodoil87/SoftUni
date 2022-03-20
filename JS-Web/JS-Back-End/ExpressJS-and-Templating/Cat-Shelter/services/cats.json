@@ -22,5 +22,10 @@
     "description": "Dominant and aggressive to other cats. Will probably eat you in your sleep.",
     "imageUrl": "https://cdn.pixabay.com/photo/2014/04/13/20/49/cat-323262_1280.jpg",
     "breed": "Grumpy Cat"
+  },
+  "9eb196": {
+    "name": "Kotor",
+    "description": "Mnogo debel Kotor",
+    "breed": "fat"
   }
 }
