@@ -10,28 +10,35 @@ const editCat = require('./controllers/editCat.js');
 const { home } = require('./controllers/home.js');
 const { notFound } = require('./controllers/notFound.js');
 
+const initDb = require('./models/index.js');
 const app = express();
 
-app.engine('hbs', hbs.create({
-    extname: '.hbs'
-}).engine);
-app.set('view engine', 'hbs');
+start();
 
-app.use(express.urlencoded({ extended: true }));
-app.use('/content', express.static('content'));
-app.use(catsService());
+async function start() {
+    await initDb();
 
-app.get('/', home);
-app.get('/addBreed', addBreed.get);
-app.post('/addBreed', addBreed.post);
-app.get('/addCat', addCat.get);
-app.post('/addCat', addCat.post);
-app.get('/catShelter/:id', catShelter.get);
-app.post('/catShelter/:id', catShelter.post);
-app.get('/editCat/:id', editCat.get);
-app.post('/editCat/:id', editCat.post);
-app.post('/editCat', editCat.post);
+    app.engine('hbs', hbs.create({
+        extname: '.hbs'
+    }).engine);
+    app.set('view engine', 'hbs');
 
-app.all('*', notFound);
+    app.use(express.urlencoded({ extended: true }));
+    app.use('/content', express.static('content'));
+    app.use(catsService());
 
-app.listen(3000, () => console.log('Listen on port 3000!'));
+    app.get('/', home);
+    app.get('/addBreed', addBreed.get);
+    app.post('/addBreed', addBreed.post);
+    app.get('/addCat', addCat.get);
+    app.post('/addCat', addCat.post);
+    app.get('/catShelter/:id', catShelter.get);
+    app.post('/catShelter/:id', catShelter.post);
+    app.get('/editCat/:id', editCat.get);
+    app.post('/editCat/:id', editCat.post);
+    app.post('/editCat', editCat.post);
+
+    app.all('*', notFound);
+
+    app.listen(3000, () => console.log('Listen on port 3000!'));
+}

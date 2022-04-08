@@ -5,7 +5,7 @@ module.exports = {
         const cat = await req.storage.getCatById(id);
         const breeds = await req.storage.getAllBreeds();
 
-        console.log(breeds);
+        console.log(cat);
         if (cat) {
             res.render('editCat', { cat, breeds, title: 'editCat'});
         } else {

@@ -10,7 +10,7 @@ module.exports = {
         const cat = {
             name: req.body.name,
             description: req.body.description,
-            imageUrl: req.body.image,
+            imageUrl: req.body.upload,
             breed: req.body.breed
         }
 

@@ -1,6 +1,17 @@
 const fs = require('fs/promises');
+const Cat = require('../models/Cat.js');
 
 const filePath = './services/';
+
+function catViewModel(cat) {
+    return {
+        id: cat._id,
+        name: cat.name,
+        description: cat.description,
+        imageUrl: cat.imageUrl,
+        breed: cat.breed
+    }
+}
 
 async function read(fileName) {
 
@@ -26,14 +37,23 @@ async function write(data, fileName) {
 }
 
 async function getCatById(id) {
-    const data = await read('cats');
+    const cat = await Cat.findById(id);
 
-    const cat = data[id];
     if (cat) {
-        return Object.assign({}, { id }, cat);
+        return catViewModel(cat);
     } else {
         return undefined;
     }
+
+    /*
+    const data = await read('cats');
+       const cat = data[id];
+       if (cat) {
+           return Object.assign({}, { id }, cat);
+       } else {
+           return undefined;
+       }
+       */
 }
 
 async function deleteCatById(id) {
@@ -52,33 +72,41 @@ async function editCatById(id, cat) {
 
     if (data.hasOwnProperty(id)) {
         data[id] = cat;
-        await write(data, 'cats');  
+        await write(data, 'cats');
     } else {
         throw new Error('No such id in database');
     }
 }
 
 async function getAllCats(query) {
-    const data = await read('cats');
-    let cats = Object
-        .entries(data)
-        .map(([id, v]) => Object.assign({}, { id }, v));
+    const cats = await Cat.find({});
+    return cats.map(catViewModel);
+    // const data = await read('cats');
+    // let cats = Object
+    //     .entries(data)
+    //     .map(([id, v]) => Object.assign({}, { id }, v));
 
-    if (query.search) {
-        cats = cats.filter(c => c.breed.toLocaleLowerCase().includes(query.search.toLocaleLowerCase()))
-    }
+    // if (query.search) {
+    //     cats = cats.filter(c => c.breed.toLocaleLowerCase().includes(query.search.toLocaleLowerCase()))
+    // }
 
-    return cats;
+    // return cats;
+
+
 
 }
 
 async function createCat(cat) {
+    const result = new Cat(cat);
+    await result.save();
+    /*
     const id = nextId();
 
     const cats = await read('cats');
     cats[id] = cat;
 
     await write(cats, 'cats');
+    */
 }
 
 async function getAllBreeds() {
