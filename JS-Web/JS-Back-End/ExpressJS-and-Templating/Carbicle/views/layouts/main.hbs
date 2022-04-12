@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>{{{title}}}</title>
+  <link href="/static/css/site.css" type="text/css" rel="stylesheet">
+  <link rel='shortcut icon' type='image/x-icon' href='/static/images/favicon.png' />
+  <title>{{title}}</title>
+  {{!--
+  <script src="/static/src/app.js"></script> --}}
+
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <ul>
+        <li><img class="logo" src="/static/images/carLogo.png"></li>
+        <li><a href="/">Browse</a></li>
+        <li><a href="/about">About</a></li>
+        {{#if hasUser}}
+        <li><a href="/create">Add a Car</a></li>
+        <li><a href="/create/accessory">Create Accessory</a></li>
+        <li><a href="/logout">Logout</a></li>
+        {{else}}
+        <li><a href="/login">Login</a></li>
+        <li><a href="/register">Register</a></li>
+        {{/if}}
+      </ul>
+    </header>
+    <main class="main">
+
+      {{{body}}}
+
+    </main>
+  </div>
+  <footer>@Carbicle: Exercise for Express.js and Handlebars</footer>
+</body>
+
+</html>

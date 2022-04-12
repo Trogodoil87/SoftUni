@@ -1,0 +1,11 @@
+<main>
+    <section class="cats">
+        <ul>
+            {{#each cats}}
+            {{> catPreview}}
+            {{else}}
+            <p>No cats in database. <a class="redirectBtn" href="/addCat">Add the first cat!</a></p>
+            {{/each}}
+        </ul>
+    </section>
+</main>
