@@ -1,3 +1,6 @@
+const bcrypt = require('bcrypt');
+const res = require('express/lib/response');
+
 function accessoryViewModel(accessory) {
     return {
         id: accessory._id,
@@ -18,16 +21,35 @@ function carViewModel(car) {
         accessories: car.accessories
     }
 
-    console.log('Before', model)
     if (model.accessories.length > 0 && model.accessories[0].name) {
         model.accessories = model.accessories.map(accessoryViewModel);
     }
 
-    console.log('After', model)
     return model;
+}
+
+async function hashPassword(password) {
+    return bcrypt.hash(password, 10);
+};
+
+async function comparePassword(password, hashedPassword) {
+    return bcrypt.compare(password, hashedPassword);
+}
+
+function isLoggedIn() {
+    return function (req, res, next) {
+        if (req.session.user) {
+            next();
+        } else {
+            res.redirect('/login');
+        }
+    }
 }
 
 module.exports = {
     accessoryViewModel,
-    carViewModel
+    carViewModel,
+    hashPassword,
+    comparePassword,
+    isLoggedIn
 }
