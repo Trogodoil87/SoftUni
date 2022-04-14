@@ -21,12 +21,16 @@ module.exports = {
             const carId = req.params.id;
             const accessoryId = req.body.accessory;
 
-            await req.storage.attachAccessory(carId, accessoryId);
-            res.redirect('/');
+            if (await req.storage.attachAccessory(carId, accessoryId, req.session.user.id)) {
+                return res.redirect('/');
+            } else {
+                return res.redirect('/login');
+            }
 
         } catch (error) {
             console.log(`Error creating accessory!`);
-            res.redirect('404');
+            console.log(error.message)
+            res.redirect('/404');
         }
     }
 }
