@@ -4,10 +4,14 @@
 <div class="details">
   <p><span>Description:</span> {{description}}</p>
   <p><span>Price:</span> {{price}}</p>
+  {{#if isOwner}}
   <a class="btn" href="/">Back</a>
   <a class="btn" href="/attach/{{id}}">Attach accessory</a>
   <a class="btn" href="/edit/{{id}}">Edit</a>
-  <a class="btn del" href="/delete/{{id}}">Delete</a>
+  <a class="btn" href="/delete/{{id}}">Delete</a>
+  {{else}}
+  <a class="btn" href="/">Back</a>
+  {{/if}}
 </div>
 
 <h2>Accessories</h2>
@@ -18,4 +22,3 @@
   <h3 class="italic">This vehicle has no accessories yet...</h3>
   {{/each}}
   {{/with}}
-  <script src="/static/js/deleteCofirmation.js"></script>

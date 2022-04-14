@@ -13,12 +13,13 @@ const about = require('./controllers/about.js');
 const create = require('./controllers/create.js');
 const details = require('./controllers/details.js');
 const notFound = require('./controllers/notFound.js');
-const { deleteCar } = require('./controllers/deleteCar.js');
+const deleteCar = require('./controllers/deleteCar.js');
 const edit = require('./controllers/edit.js');
 const accessory = require('./controllers/accessory.js');
 const attach = require('./controllers/attach.js');
 const { loginGet, loginPost, registerGet, registerPost, logoutGet } = require('./controllers/auth.js');
 const { isLoggedIn } = require('./services/utils.js');
+const { del } = require('express/lib/application');
 
 
 
@@ -49,7 +50,10 @@ async function start() {
     app.route('/').get(home.get);
     app.get('/about', about.get);
     app.get('/details/:id', details.get);
-    app.get('/delete/:id', isLoggedIn(), deleteCar)
+    
+    app.route('/delete/:id')
+        .get(deleteCar.get)
+        .post(deleteCar.post);
 
     app.route('/create')
         .get(isLoggedIn(), create.get)
