@@ -8,8 +8,8 @@ module.exports = {
             description: req.body.description,
             imageUrl: req.body.imageUrl,
             price: req.body.price,
-        }
-
+            owner: req.session.user.id
+        };
 
         try {
             await req.storage.createCar(car);

@@ -16,6 +16,7 @@ const notFound = require('./controllers/notFound.js');
 const { deleteCar } = require('./controllers/deleteCar.js');
 const edit = require('./controllers/edit.js');
 const accessory = require('./controllers/accessory.js');
+const attach = require('./controllers/attach.js');
 const { loginGet, loginPost, registerGet, registerPost, logoutGet } = require('./controllers/auth.js');
 const { isLoggedIn } = require('./services/utils.js');
 
@@ -58,13 +59,13 @@ async function start() {
         .get(isLoggedIn(), edit.get)
         .post(isLoggedIn(), edit.post);
 
-    app.route('/create/accessory')
-        .get(isLoggedIn(), accessory.createPage)
-        .post(isLoggedIn(), accessory.create);
+    app.route('/accessory')
+        .get(isLoggedIn(), accessory.get)
+        .post(isLoggedIn(), accessory.post);
 
-    app.route('/accessory/:id')
-        .get(isLoggedIn(), accessory.attachPage)
-        .post(isLoggedIn(), accessory.attach);
+    app.route('/attach/:id')
+        .get(isLoggedIn(), attach.get)
+        .post(isLoggedIn(), attach.post);
 
     app.route('/login')
         .get(loginGet)

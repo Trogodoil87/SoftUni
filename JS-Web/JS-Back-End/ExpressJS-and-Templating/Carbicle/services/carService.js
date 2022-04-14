@@ -36,12 +36,16 @@ async function getById(id) {
     return carViewModel(car);
 }
 
-async function deleteById(id) {
+async function deleteById(id, ownerId) {
     await Car.findByIdAndUpdate(id, { isDeleted: true });
 }
 
-async function updateById(id, car) {
+async function updateById(id, car, ownerId) {
     const existing = await Car.findById(id).where({ isDeleted: false });
+
+    if (existing.owner != ownerId) {
+        return false;
+    }
 
     existing.name = car.name;
     existing.description = car.description;
@@ -50,6 +54,8 @@ async function updateById(id, car) {
     existing.accessories = car.accessories;
 
     await existing.save();
+
+    return true;
 }
 
 async function attachAccessory(carId, accessoryId) {
