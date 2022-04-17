@@ -17,9 +17,8 @@ const deleteCar = require('./controllers/deleteCar.js');
 const edit = require('./controllers/edit.js');
 const accessory = require('./controllers/accessory.js');
 const attach = require('./controllers/attach.js');
-const { loginGet, loginPost, registerGet, registerPost, logoutGet } = require('./controllers/auth.js');
+const authController = require('./controllers/auth.js');
 const { isLoggedIn } = require('./services/utils.js');
-const { del } = require('express/lib/application');
 
 
 
@@ -50,7 +49,7 @@ async function start() {
     app.route('/').get(home.get);
     app.get('/about', about.get);
     app.get('/details/:id', details.get);
-    
+
     app.route('/delete/:id')
         .get(deleteCar.get)
         .post(deleteCar.post);
@@ -71,15 +70,8 @@ async function start() {
         .get(isLoggedIn(), attach.get)
         .post(isLoggedIn(), attach.post);
 
-    app.route('/login')
-        .get(loginGet)
-        .post(loginPost);
+    app.use(authController);
 
-    app.route('/register')
-        .get(registerGet)
-        .post(registerPost);
-
-    app.get('/logout', logoutGet);
     app.get('*', notFound.get)
 
     app.listen(3000, () => console.log('Listen on port 3000!'));
