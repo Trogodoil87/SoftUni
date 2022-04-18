@@ -33,6 +33,7 @@ async function getAll(query) {
 
 async function getById(id) {
     const car = await Car.findById(id).where({ isDeleted: false }).populate('accessories');
+    console.log(car);
     return carViewModel(car);
 }
 
