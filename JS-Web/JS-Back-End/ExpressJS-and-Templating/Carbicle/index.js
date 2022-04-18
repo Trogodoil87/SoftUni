@@ -73,6 +73,7 @@ async function start() {
     app.use(authController);
 
     app.get('*', notFound.get)
+    
 
     app.listen(3000, () => console.log('Listen on port 3000!'));
 }
