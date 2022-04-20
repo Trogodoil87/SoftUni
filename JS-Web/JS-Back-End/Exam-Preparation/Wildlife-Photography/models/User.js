@@ -28,7 +28,7 @@ const userSchema = new Schema({
             message: 'Email must be valid and may contain only english letters'
         }
     },
-    hashedPassword: { type: String, required: true }
+    hashedPassword: { type: String, minlength: [2, 'Password must be at least 2 character long'] }
 });
 
 userSchema.index({ email: 1 }, {
