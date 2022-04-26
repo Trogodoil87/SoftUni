@@ -6,17 +6,26 @@
             exploration begin!</p>
     </header>
     <div class="row text-center">
+        <!-- If there are shared trips in the database display each of them -->
 
-        {{#if trips}}
+        <!-- trip #1 -->
         {{#each trips}}
         {{> tripPreview}}
-        {{/each}}
-
         {{else}}
+        <!-- If there are no shared trips in the database -->
         <div class="no-trips">
             <img src="https://www.stagweb.co.uk/img/activities/big/sexyhitchhiker1.jpg" />
             <p class="lead">Hitchhiker time...</p>
         </div>
-        {{/if}}
+        {{/each}}
+
+        <!--src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/cybertruck-1-1574399754.jpeg"
+
+        src="https://www.nastarta.com/wp-content/uploads/2017/12/2018-mercedes-benz-cls-8.jpg"
+
+        src="https://www.nastarta.com/wp-content/uploads/2018/04/Mercedes-Benz-A-Class-2019-1280-3d.jpg"
+
+        src="https://autobild.bg/wp-content/uploads/2018/01/Mercedes-AMG-CLS-53-2018-Preis-Motor-Infos-1200x800-dffb5975c6d73154.jpg"-->
+
     </div>
 </section>

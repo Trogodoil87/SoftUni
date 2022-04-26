@@ -10,17 +10,19 @@
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+                    <input type="password" class="form-control" id="password" placeholder="Password" name="password"
+                        value="">
                 </div>
                 <div class="form-group">
                     <label for="rePassword">Re-Password</label>
-                    <input type="password" class="form-control" id="rePassword" placeholder="Re-Password" name="repass">
+                    <input type="password" class="form-control" id="rePassword" placeholder="Re-Password" name="repass"
+                        value="">
                 </div>
                 <label>Gender</label>
                 <div class="gender">
-                    <input type="radio" id="female" name="gender" value="female">
+                    <input type="radio" id="female" name="gender" value="female" {{#unless data.isMale}}checked{{/unless}}>
                     <label for="female">Female</label>
-                    <input type="radio" id="male" name="gender" value="male" checked>
+                    <input type="radio" id="male" name="gender" value="male" {{#if data.isMale}}checked{{/if}}>
                     <label for="male">Male</label>
                 </div>
                 <div class="form-group">

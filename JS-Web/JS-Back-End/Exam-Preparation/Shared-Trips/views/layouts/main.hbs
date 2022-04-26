@@ -7,13 +7,13 @@
 </head>
 
 <body>
-    {{#if errors}}
     <!-- In case of error, you should display div with class "error" -->
     <!-- You can choose to display the first error or all of them (error message/s in your opinion) -->
+    {{#if errors}}
     <div class="error">
-    {{#each errors}}
+        {{#each errors}}
         <p>{{msg}}</p>
-    {{/each}}
+        {{/each}}
     </div>
     {{/if}}
 
@@ -25,20 +25,19 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
 
                 <ul class="navbar-nav ml-auto">
-                    <!-- Guest users and Logged users -->
                     <li class="nav-item">
                         <a class="nav-link" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/share">Shared Trips</a>
+                        <a class="nav-link" href="/catalog">Shared Trips</a>
                     </li>
-                    <!-- Logged users -->
                     {{#if hasUser}}
+                    <!-- Logged users -->
                     <li class="nav-item">
-                        <a class="nav-link" href="/offer">Offer Trip</a>
+                        <a class="nav-link" href="/create">Offer Trip</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/profile">Profile</a>
+                        <a class="nav-link" href="/profile/{{user._id}}">Profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/logout">Logout as [ {{user.email}} ]</a>

@@ -12,34 +12,4 @@ function mapErrors(error) {
     }
 }
 
-function creatorViewModel(creator) {
-    return {
-        id: creator._id,
-        email: creator.email,
-        gender: creator.gender
-    }
-}
-
-function tripViewModel(trip) {
-    const model = {
-        id: trip._id,
-        startPoint: trip.startPoint,
-        endPoint: trip.endPoint,
-        date: trip.date,
-        time: trip.time,
-        carImage: trip.carImage,
-        carBrand: trip.carBrand,
-        seats: trip.seats,
-        price: trip.price,
-        description: trip.description,
-        buddies: trip.buddies,
-        creator: creatorViewModel(trip.creator)
-    }
-
-    return model;
-}
-
-module.exports = {
-    mapErrors,
-    tripViewModel
-};
+module.exports = mapErrors;

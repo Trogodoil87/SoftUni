@@ -1,47 +1,44 @@
-const { route } = require('express/lib/application');
 const { isUser, isGuest } = require('../middleware/gurads.js');
 const { register, login } = require('../services/user.js');
-const { mapErrors } = require('../util/mappers.js');
+const mapErrors = require('../util/mappers.js');
 
 const router = require('express').Router();
 
 router.get('/register', isGuest(), (req, res) => {
-    res.render('register');
+    res.render('register', { title: 'Register Page' });
 });
 
-//TODO check form action, method, field names
 router.post('/register', isGuest(), async (req, res) => {
     try {
-        if (req.body.password.trim() == '') {
-            throw new Error('Password is required');
+        if (req.body.password.trim().length < 4) {
+            throw new Error('Password should be at least 4 characters long');
         }
         if (req.body.password != req.body.repass) {
             throw new Error('Password\'s don\'t match');
         }
+
         const user = await register(req.body.email, req.body.password, req.body.gender);
         req.session.user = user;
-        res.redirect('/'); //TODO check redirect
+        res.redirect('/');
     } catch (err) {
-        //TODO send errors
+        console.log(err);
         const errors = mapErrors(err);
-        console.log(errors);
-        res.render('register', { data: { email: req.body.email, gender: req.body.gender }, errors });
+        const isMale = req.body.gender == 'male';
+
+        res.render('register', { data: { email: req.body.email, isMale }, errors });
     }
 });
 
 router.get('/login', isGuest(), (req, res) => {
-
-    res.render('login');
+    res.render('login', { title: 'Login Page' });
 });
 
-//TODO check form action, method, field names
 router.post('/login', isGuest(), async (req, res) => {
     try {
         const user = await login(req.body.email, req.body.password);
         req.session.user = user;
-        res.redirect('/'); //TODO check redirect
+        res.redirect('/');
     } catch (err) {
-        //TODO send errors
         const errors = mapErrors(err);
         res.render('login', { data: { email: req.body.email }, errors });
     }
