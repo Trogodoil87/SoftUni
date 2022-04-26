@@ -1,49 +1,39 @@
-const { isUser } = require('../middleware/gurads.js');
-const { mapErrors, tripViewModel } = require('../util/mappers.js');
-const { createTrip, getById, joinTrip } = require('../services/post.js');
-
 const router = require('express').Router();
 
-router.get('/offer', isUser(), (req, res) => {
-    res.render('create');
+const { isUser, isGuest } = require('../middleware/gurads.js');
+const { createTrip } = require('../services/post.js');
+const mapErrors = require('../util/mappers.js');
+
+router.get('/create', isUser(), (req, res) => {
+    res.render('create', { title: 'Create Page' });
 });
 
 router.post('/create', isUser(), async (req, res) => {
-    const model = {
-        creator: req.session.user._id,
-        startPoint: req.body.startPoint,
-        endPoint: req.body.endPoint,
-        date: req.body.date,
-        time: req.body.time,
-        carImage: req.body.carImage,
-        carBrand: req.body.carBrand,
-        seats: req.body.seats,
-        price: req.body.price,
-        description: req.body.description,
-        buddies: req.body.buddies
+
+    const trip = {
+        startPoint: req.body.startPoint.trim(),
+        endPoint: req.body.endPoint.trim(),
+        date: req.body.date.trim(),
+        time: req.body.time.trim(),
+        image: req.body.image.trim(),
+        brand: req.body.brand.trim(),
+        seats: req.body.seats.trim(),
+        price: req.body.price.trim(),
+        description: req.body.description.trim(),
+        author: req.session.user._id
     };
 
     try {
-        const trip = await createTrip(model);
-        res.redirect('/');
+
+        await createTrip(trip);
+
+        res.redirect('/catalog');
     } catch (err) {
+        console.log(err);
         const errors = mapErrors(err);
-        console.log(errors);
-        res.render('create', { title: 'New Offer', errors, data: model });
+        res.render('create', { data: trip, errors });
     }
+
 });
-
-router.get('/join/:id', isUser(), async (req, res) => {
-    const id = req.params.id;
-
-    try {
-        
-        await joinTrip(id);
-        res.redirect('/details/' + id);
-    } catch (err) {
-        const errors = mapErrors(err);
-        res.render('home', { title: 'Home Page', errors });
-    }
-})
 
 module.exports = router;

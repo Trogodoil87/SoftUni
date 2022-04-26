@@ -15,10 +15,5 @@ async function start() {
     routesConfig(app);
 
 
-    app.get('/', (req, res) => {
-        res.render('home');
-    })
-    app.get('*', (req, res) => {res.render('404')});
-
     app.listen(3000, () => console.log('Listen on port 3000!'));
 }
