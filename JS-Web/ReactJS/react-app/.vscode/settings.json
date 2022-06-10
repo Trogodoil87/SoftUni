@@ -1,0 +1,6 @@
+{
+    "base" : "$gcc",
+    "fileLocation" : "absolute"
+    // "task.problemMatchers.neverPrompt": false,  
+  
+}
